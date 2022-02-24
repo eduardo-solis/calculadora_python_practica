@@ -1,0 +1,77 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+{% from '_macros.html' import render_field %}
+{% from '_macros.html' import render_radios %}
+
+<h1>Ejercicio 1</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Formulario
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Operaciones basicas</h5>        
+            
+                    <div class="container">
+                        <form name="form1" action="" method="POST" novalidate>
+            
+                            <!-- Inputs para la captura de los numeros -->
+                            <div class="row mt-3">
+            
+                                <div class="col">
+                                    {{ render_field(form.numero1, class='form-control')}}
+                                </div>
+            
+                                <div class="col">
+                                    {{ render_field(form.numero2, class='form-control')}}
+                                </div>
+            
+                            </div>
+            
+                            <!-- RadioButtons para seleccionar la operacion a realizar -->
+            
+                            <div class="row mt-3">
+            
+                                <p class="card-text">Seleccione la operacion deseada</p>
+            
+                                <div class="col">
+                                    {% for subfield in form.brGrupo %}
+                                        <tr>
+                                            <td>{{ subfield }}</td>
+                                            <td>{{ subfield.label }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </div>
+                            </div>
+            
+                            <!-- Botón para enviar el formulario -->
+            
+                            <div class="row mt-3">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Respuesta del formulario -->
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Respuesta</h5>
+                    <p class="card-text text-success" style="font-size: 4em; font-weight: bold;">{{respuesta}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
